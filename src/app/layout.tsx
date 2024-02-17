@@ -19,6 +19,7 @@ export default function RootLayout({
 				<section className="mx-auto max-w-md p-12 sm:max-w-2xl sm:py-16 md:max-w-4xl lg:max-w-7xl">
 					{children}
 				</section>
+				<footer className="text-center text-gray-500"> © 2021 Next13</footer>
 			</body>
 		</html>
 	);
