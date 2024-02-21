@@ -29,7 +29,7 @@ export default function RootLayout({
 									<ActiveLink href="/">Homepage</ActiveLink>
 								</li>
 								<li>
-									<ActiveLink href="/products">Products</ActiveLink>
+									<ActiveLink href="/products">All</ActiveLink>
 								</li>
 							</ul>
 						</li>
