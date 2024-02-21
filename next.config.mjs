@@ -5,8 +5,8 @@ import createMDX from "@next/mdx";
 const nextConfig = {
 	// Configure `pageExtensions`` to include MDX files
 	pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+	typedRoutes: true,
 	experimental: {
-		typedRoutes: true,
 		mdxRs: true,
 	},
 	// Optionally, add any other Next.js config below
