@@ -1,9 +1,17 @@
-import { geProductResponseItemTypesList } from "@/api/product";
+import { geProductResponseItemTypesList, getAllProductsLength } from "@/api/product";
+import { Pagination } from "@/ui/atoms/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList";
-import { TOTAL_PRODUCTS } from "@/variables";
+import { PRODUCTS_PER_PAGE, TOTAL_PRODUCTS } from "@/variables";
 
 export default async function Home() {
 	const products = await geProductResponseItemTypesList(TOTAL_PRODUCTS);
+	const productLength = await getAllProductsLength();
+	const totalPages = Math.ceil(productLength / PRODUCTS_PER_PAGE);
 
-	return <ProductList products={products} />;
+	return (
+		<>
+			<ProductList products={products} />
+			<Pagination totalPages={totalPages} />
+		</>
+	);
 }
