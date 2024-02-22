@@ -15,7 +15,7 @@ export function ActiveLink<T extends string>({
 	const pathname = usePathname();
 	const isActive = pathname === href;
 	return (
-		<Link className={clsx(`hover:text-red-600`, isActive && `underline`)} href={href}>
+		<Link className={clsx(`hover:text-red-600`, isActive && `font-bold underline`)} href={href}>
 			{children}
 		</Link>
 	);

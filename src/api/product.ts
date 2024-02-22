@@ -1,7 +1,19 @@
 import { type ProductItemType, type ProductResponseItemType } from "@/types/productTypes";
 
-export const geProductResponseItemTypesList = async () => {
-	const res = await fetch("https://naszsklep-api.vercel.app/api/products");
+export const getAllProductsLength = async () => {
+	const res = await fetch(`https://naszsklep-api.vercel.app/api/products`);
+	const responseProducts = (await res.json()) as ProductResponseItemType[];
+	const products: ProductItemType[] = responseProducts.map(productResponseItemToProductItem);
+	return products.length;
+};
+
+export const geProductResponseItemTypesList = async (
+	productsNumber: number,
+	offset: number = 0,
+) => {
+	const res = await fetch(
+		`https://naszsklep-api.vercel.app/api/products?take=${productsNumber}&offset=${offset}`,
+	);
 	const responseProducts = (await res.json()) as ProductResponseItemType[];
 	const products: ProductItemType[] = responseProducts.map(productResponseItemToProductItem);
 	return products;
