@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import { type Metadata } from "next";
 import { geProductResponseItemTypeById } from "@/api/product";
 import { ProductCoverImage } from "@/ui/atoms/ProductCoverImg";
-import { ProductListItemDescription } from "@/ui/atoms/ProductListItemDescription";
 import { SuggestedProducts } from "@/ui/organisms/SuggestedProducts";
 import { ProductDescription } from "@/ui/atoms/ProductDescription";
 
@@ -29,14 +28,17 @@ export default async function SingleProduct({ params }: { params: { productId: s
 	const product = await geProductResponseItemTypeById(params.productId);
 	return (
 		<>
-			<article className="max-w-lg">
-				<ProductCoverImage src={product.coverImage.src} alt={product.coverImage.alt} />
-				<ProductListItemDescription product={product} />
-				<ProductDescription product={product} />
-				<Suspense fallback={<div>Loading...</div>}>
-					<SuggestedProducts />
-				</Suspense>
+			<article className="flex">
+				<div className="max-w-xl flex-shrink-0">
+					<ProductCoverImage src={product.coverImage.src} alt={product.coverImage.alt} />
+				</div>
+				<div>
+					<ProductDescription product={product} />
+				</div>
 			</article>
+			<Suspense fallback={<div>Loading...</div>}>
+				<SuggestedProducts />
+			</Suspense>
 		</>
 	);
 }

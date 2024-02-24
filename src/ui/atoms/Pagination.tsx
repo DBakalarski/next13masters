@@ -1,4 +1,4 @@
-import { ActiveLink } from "./ActiveLink";
+import { ActiveLink } from "@/ui/atoms/ActiveLink";
 
 export const Pagination = ({ totalPages }: { totalPages: number }) => {
 	const totalPagesArray = Array.from({ length: totalPages }, (_, i) => i + 1);
