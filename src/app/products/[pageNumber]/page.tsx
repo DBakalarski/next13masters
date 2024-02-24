@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { geProductResponseItemTypesList, getAllProductsLength } from "@/api/product";
 import { Pagination } from "@/ui/atoms/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList";
-import { PRODUCTS_PER_PAGE } from "@/variables";
+import { PRODUCTS_PER_PAGE } from "@/constant";
 
 export default async function Products({ params }: { params: { pageNumber: string } }) {
 	const productLength = await getAllProductsLength();
