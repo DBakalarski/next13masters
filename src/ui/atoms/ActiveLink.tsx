@@ -13,9 +13,22 @@ export function ActiveLink<T extends string>({
 	children: React.ReactNode;
 }) {
 	const pathname = usePathname();
-	const isActive = pathname === href;
+
+	const hrefPath = typeof href === "object" ? href.pathname : href;
+
+	const isRootLinkActive = hrefPath === "/" && pathname === "/";
+	const isActive =
+		isRootLinkActive ||
+		(!isRootLinkActive &&
+			pathname.startsWith(hrefPath) &&
+			(pathname === hrefPath || pathname.startsWith(`${hrefPath}/`)));
+
 	return (
-		<Link className={clsx(`hover:text-red-600`, isActive && `font-bold underline`)} href={href}>
+		<Link
+			className={clsx(`hover:text-red-600`, isActive && `font-bold underline`)}
+			href={href}
+			{...(isActive ? { "aria-current": "page" } : {})}
+		>
 			{children}
 		</Link>
 	);

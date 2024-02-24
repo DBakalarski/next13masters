@@ -29,7 +29,6 @@ export default async function SingleProduct({ params }: { params: { productId: s
 	const product = await geProductResponseItemTypeById(params.productId);
 	return (
 		<>
-			<h1 className="text-4xl font-bold">{product.name}</h1>
 			<article className="max-w-lg">
 				<ProductCoverImage src={product.coverImage.src} alt={product.coverImage.alt} />
 				<ProductListItemDescription product={product} />

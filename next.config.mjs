@@ -9,6 +9,20 @@ const nextConfig = {
 	experimental: {
 		mdxRs: true,
 	},
+	async redirects() {
+		return [
+			{
+				source: "/products",
+				destination: "/products/1",
+				permanent: true,
+			},
+			{
+				source: "/product",
+				destination: "/products",
+				permanent: true,
+			},
+		];
+	},
 	// Optionally, add any other Next.js config below
 };
 
