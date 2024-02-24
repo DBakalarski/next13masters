@@ -7,7 +7,7 @@ export const getAllProductsLength = async () => {
 	return products.length;
 };
 
-export const geProductResponseItemTypesList = async (
+export const getProductResponseItemTypesList = async (
 	productsNumber: number,
 	offset: number = 0,
 ) => {
@@ -19,7 +19,7 @@ export const geProductResponseItemTypesList = async (
 	return products;
 };
 
-export const geProductResponseItemTypeById = async (id: string) => {
+export const getProductResponseItemTypeById = async (id: string) => {
 	const res = await fetch(`https://naszsklep-api.vercel.app/api/products/${id}`);
 	const responseProduct = (await res.json()) as ProductResponseItemType;
 	const product: ProductItemType = productResponseItemToProductItem(responseProduct);

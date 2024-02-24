@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { type Metadata } from "next";
-import { geProductResponseItemTypeById } from "@/api/product";
+import { getProductResponseItemTypeById } from "@/api/product";
 import { ProductCoverImage } from "@/ui/atoms/ProductCoverImg";
 import { SuggestedProducts } from "@/ui/organisms/SuggestedProducts";
 import { ProductDescription } from "@/ui/atoms/ProductDescription";
@@ -17,7 +17,7 @@ export const generateMetadata = async ({
 }: {
 	params: { productId: string };
 }): Promise<Metadata> => {
-	const product = await geProductResponseItemTypeById(params.productId);
+	const product = await getProductResponseItemTypeById(params.productId);
 	return {
 		title: `Produkt - ${product.name}`,
 		description: product.description,
@@ -25,7 +25,7 @@ export const generateMetadata = async ({
 };
 
 export default async function SingleProduct({ params }: { params: { productId: string } }) {
-	const product = await geProductResponseItemTypeById(params.productId);
+	const product = await getProductResponseItemTypeById(params.productId);
 	return (
 		<>
 			<article className="flex">

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { geProductResponseItemTypesList, getAllProductsLength } from "@/api/product";
+import { getProductResponseItemTypesList, getAllProductsLength } from "@/api/product";
 import { Pagination } from "@/ui/atoms/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { PRODUCTS_PER_PAGE } from "@/constant";
@@ -14,7 +14,7 @@ export default async function Products({ params }: { params: { pageNumber: strin
 	}
 
 	const offset = (pageNumber - 1) * PRODUCTS_PER_PAGE;
-	const products = await geProductResponseItemTypesList(PRODUCTS_PER_PAGE, offset);
+	const products = await getProductResponseItemTypesList(PRODUCTS_PER_PAGE, offset);
 
 	return (
 		<>
