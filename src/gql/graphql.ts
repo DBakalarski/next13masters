@@ -10768,19 +10768,21 @@ export type ProductGetListByCategoryQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetListByCategoryQuery = { categories: Array<{ products: Array<{ id: string, name: string, price: number, description: string, images: Array<{ url: string }> }> }> };
+export type ProductGetListByCategoryQuery = { categories: Array<{ products: Array<{ id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> }> }> };
 
 export type ProductsGetSingleItemByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type ProductsGetSingleItemByIdQuery = { product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }> } | null };
+export type ProductsGetSingleItemByIdQuery = { product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> } | null };
+
+export type ProductListItemFragmentFragment = { id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> };
 
 export type ProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProductsGetListQuery = { products: Array<{ id: string, name: string, price: number, description: string, images: Array<{ url: string }> }> };
+export type ProductsGetListQuery = { products: Array<{ id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> }> };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -10796,48 +10798,77 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
-
+export const ProductListItemFragmentFragmentDoc = new TypedDocumentString(`
+    fragment ProductListItemFragment on Product {
+  id
+  name
+  price
+  description
+  images {
+    url
+  }
+  categories {
+    id
+    name
+  }
+}
+    `, {"fragmentName":"ProductListItemFragment"}) as unknown as TypedDocumentString<ProductListItemFragmentFragment, unknown>;
 export const ProductGetListByCategoryDocument = new TypedDocumentString(`
     query ProductGetListByCategory($slug: String!) {
   categories(where: {slug: $slug}) {
     products(first: 10) {
-      id
-      name
-      price
-      description
-      images {
-        url
-      }
-      price
+      ...ProductListItemFragment
     }
   }
 }
-    `) as unknown as TypedDocumentString<ProductGetListByCategoryQuery, ProductGetListByCategoryQueryVariables>;
+    fragment ProductListItemFragment on Product {
+  id
+  name
+  price
+  description
+  images {
+    url
+  }
+  categories {
+    id
+    name
+  }
+}`) as unknown as TypedDocumentString<ProductGetListByCategoryQuery, ProductGetListByCategoryQueryVariables>;
 export const ProductsGetSingleItemByIdDocument = new TypedDocumentString(`
     query ProductsGetSingleItemById($id: ID!) {
   product(where: {id: $id}) {
-    id
-    name
-    price
-    description
-    images {
-      url
-    }
-    price
+    ...ProductListItemFragment
   }
 }
-    `) as unknown as TypedDocumentString<ProductsGetSingleItemByIdQuery, ProductsGetSingleItemByIdQueryVariables>;
+    fragment ProductListItemFragment on Product {
+  id
+  name
+  price
+  description
+  images {
+    url
+  }
+  categories {
+    id
+    name
+  }
+}`) as unknown as TypedDocumentString<ProductsGetSingleItemByIdQuery, ProductsGetSingleItemByIdQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList {
   products(first: 10) {
-    id
-    name
-    price
-    description
-    images {
-      url
-    }
-    price
+    ...ProductListItemFragment
   }
 }
-    `) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
+    fragment ProductListItemFragment on Product {
+  id
+  name
+  price
+  description
+  images {
+    url
+  }
+  categories {
+    id
+    name
+  }
+}`) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
