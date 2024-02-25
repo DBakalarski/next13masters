@@ -13,7 +13,7 @@ export default async function Products({ params }: { params: { pageNumber: strin
 		redirect("/products/1");
 	}
 
-	const offset = (pageNumber - 1) * PRODUCTS_PER_PAGE;
+	// const offset = (pageNumber - 1) * PRODUCTS_PER_PAGE;
 	const products = await getProductLists();
 
 	return (

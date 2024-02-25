@@ -1,7 +1,7 @@
 query ProductGetListByCategory($slug: String!) {
 	categories(where: { slug: $slug }) {
 		products(first: 10) {
-			...ProductListItemFragment
+			...ProductListItem
 		}
 	}
 }

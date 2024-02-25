@@ -1,5 +1,5 @@
 query ProductsGetSingleItemById($id: ID!) {
 	product(where: { id: $id }) {
-		...ProductListItemFragment
+		...ProductListItem
 	}
 }

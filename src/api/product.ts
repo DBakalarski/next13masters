@@ -13,42 +13,18 @@ export const getAllProductsLength = async () => {
 	return products.length;
 };
 
-export const getProductLists = async (): Promise<ProductItemType[]> => {
+export const getProductLists = async () => {
 	const grapqlRespone = await executeGraphql(ProductsGetListDocument, {});
-	return grapqlRespone.products.map((p) => {
-		return {
-			id: p.id,
-			category: "",
-			name: p.name,
-			price: p.price,
-			description: p.description,
-			coverImage: {
-				alt: p.name,
-				src: p.images[0]?.url || "",
-			},
-		};
-	});
+	return grapqlRespone.products;
 };
 
-export const getProductsListByCategory = async (): Promise<ProductItemType[]> => {
+export const getProductsListByCategory = async () => {
 	const grapqlResponse = await executeGraphql(ProductGetListByCategoryDocument, {
 		slug: "t-shirts",
 	});
 	if (!grapqlResponse.categories[0]?.products) return [];
 
-	return grapqlResponse.categories[0].products.map((p) => {
-		return {
-			id: p.id,
-			category: "",
-			name: p.name,
-			price: p.price,
-			description: p.description,
-			coverImage: {
-				alt: p.name,
-				src: p.images[0]?.url || "",
-			},
-		};
-	});
+	return grapqlResponse.categories[0].products;
 };
 
 export const getProductResponseItemTypesList = async (
@@ -74,17 +50,7 @@ export const getProductItemById = async (id: string) => {
 	const grapqlResponse = await executeGraphql(ProductsGetSingleItemByIdDocument, { id });
 	if (!grapqlResponse.product) return null;
 
-	return {
-		id: grapqlResponse.product.id,
-		category: "",
-		name: grapqlResponse.product.name,
-		price: grapqlResponse.product.price,
-		description: grapqlResponse.product.description,
-		coverImage: {
-			alt: grapqlResponse.product.name,
-			src: grapqlResponse.product.images[0]?.url || "",
-		},
-	};
+	return grapqlResponse.product;
 };
 
 const productResponseItemToProductItem = (product: ProductResponseItemType): ProductItemType => ({

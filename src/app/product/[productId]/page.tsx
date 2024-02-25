@@ -33,9 +33,7 @@ export default async function SingleProduct({ params }: { params: { productId: s
 		<>
 			<article className="flex">
 				<div className="max-w-xl flex-shrink-0">
-					{product.coverImage && (
-						<ProductCoverImage src={product.coverImage.src} alt={product.coverImage.alt} />
-					)}
+					{product.images[0] && <ProductCoverImage src={product.images[0].url} alt="" />}
 				</div>
 				<div>
 					<ProductDescription product={product} />

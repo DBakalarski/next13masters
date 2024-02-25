@@ -14,28 +14,28 @@ import * as types from './graphql';
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "query ProductGetListByCategory($slug: String!) {\n  categories(where: {slug: $slug}) {\n    products(first: 10) {\n      ...ProductListItemFragment\n    }\n  }\n}": types.ProductGetListByCategoryDocument,
-    "query ProductsGetSingleItemById($id: ID!) {\n  product(where: {id: $id}) {\n    ...ProductListItemFragment\n  }\n}": types.ProductsGetSingleItemByIdDocument,
-    "fragment ProductListItemFragment on Product {\n  id\n  name\n  price\n  description\n  images {\n    url\n  }\n  categories {\n    id\n    name\n  }\n}": types.ProductListItemFragmentFragmentDoc,
-    "query ProductsGetList {\n  products(first: 10) {\n    ...ProductListItemFragment\n  }\n}": types.ProductsGetListDocument,
+    "query ProductGetListByCategory($slug: String!) {\n  categories(where: {slug: $slug}) {\n    products(first: 10) {\n      ...ProductListItem\n    }\n  }\n}": types.ProductGetListByCategoryDocument,
+    "query ProductsGetSingleItemById($id: ID!) {\n  product(where: {id: $id}) {\n    ...ProductListItem\n  }\n}": types.ProductsGetSingleItemByIdDocument,
+    "fragment ProductListItem on Product {\n  id\n  name\n  price\n  description\n  images {\n    url\n  }\n  categories {\n    id\n    name\n  }\n}": types.ProductListItemFragmentDoc,
+    "query ProductsGetList {\n  products(first: 10) {\n    ...ProductListItem\n  }\n}": types.ProductsGetListDocument,
 };
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query ProductGetListByCategory($slug: String!) {\n  categories(where: {slug: $slug}) {\n    products(first: 10) {\n      ...ProductListItemFragment\n    }\n  }\n}"): typeof import('./graphql').ProductGetListByCategoryDocument;
+export function graphql(source: "query ProductGetListByCategory($slug: String!) {\n  categories(where: {slug: $slug}) {\n    products(first: 10) {\n      ...ProductListItem\n    }\n  }\n}"): typeof import('./graphql').ProductGetListByCategoryDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query ProductsGetSingleItemById($id: ID!) {\n  product(where: {id: $id}) {\n    ...ProductListItemFragment\n  }\n}"): typeof import('./graphql').ProductsGetSingleItemByIdDocument;
+export function graphql(source: "query ProductsGetSingleItemById($id: ID!) {\n  product(where: {id: $id}) {\n    ...ProductListItem\n  }\n}"): typeof import('./graphql').ProductsGetSingleItemByIdDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment ProductListItemFragment on Product {\n  id\n  name\n  price\n  description\n  images {\n    url\n  }\n  categories {\n    id\n    name\n  }\n}"): typeof import('./graphql').ProductListItemFragmentFragmentDoc;
+export function graphql(source: "fragment ProductListItem on Product {\n  id\n  name\n  price\n  description\n  images {\n    url\n  }\n  categories {\n    id\n    name\n  }\n}"): typeof import('./graphql').ProductListItemFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query ProductsGetList {\n  products(first: 10) {\n    ...ProductListItemFragment\n  }\n}"): typeof import('./graphql').ProductsGetListDocument;
+export function graphql(source: "query ProductsGetList {\n  products(first: 10) {\n    ...ProductListItem\n  }\n}"): typeof import('./graphql').ProductsGetListDocument;
 
 
 export function graphql(source: string) {

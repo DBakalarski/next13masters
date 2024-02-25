@@ -1,7 +1,7 @@
-import { type ProductItemType } from "@/types/productTypes";
+import { type ProductListItemFragment } from "@/gql/graphql";
 import { formatMoney } from "@/utils";
 
-export const ProductDescription = ({ product }: { product: ProductItemType }) => {
+export const ProductDescription = ({ product }: { product: ProductListItemFragment }) => {
 	return (
 		<div className="ml-4 max-w-md">
 			<h1 className="pb-4 text-4xl font-bold">{product.name}</h1>

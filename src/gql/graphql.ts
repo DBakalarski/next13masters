@@ -10777,7 +10777,7 @@ export type ProductsGetSingleItemByIdQueryVariables = Exact<{
 
 export type ProductsGetSingleItemByIdQuery = { product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> } | null };
 
-export type ProductListItemFragmentFragment = { id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> };
+export type ProductListItemFragment = { id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> };
 
 export type ProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -10798,8 +10798,8 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
-export const ProductListItemFragmentFragmentDoc = new TypedDocumentString(`
-    fragment ProductListItemFragment on Product {
+export const ProductListItemFragmentDoc = new TypedDocumentString(`
+    fragment ProductListItem on Product {
   id
   name
   price
@@ -10812,16 +10812,16 @@ export const ProductListItemFragmentFragmentDoc = new TypedDocumentString(`
     name
   }
 }
-    `, {"fragmentName":"ProductListItemFragment"}) as unknown as TypedDocumentString<ProductListItemFragmentFragment, unknown>;
+    `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
 export const ProductGetListByCategoryDocument = new TypedDocumentString(`
     query ProductGetListByCategory($slug: String!) {
   categories(where: {slug: $slug}) {
     products(first: 10) {
-      ...ProductListItemFragment
+      ...ProductListItem
     }
   }
 }
-    fragment ProductListItemFragment on Product {
+    fragment ProductListItem on Product {
   id
   name
   price
@@ -10837,10 +10837,10 @@ export const ProductGetListByCategoryDocument = new TypedDocumentString(`
 export const ProductsGetSingleItemByIdDocument = new TypedDocumentString(`
     query ProductsGetSingleItemById($id: ID!) {
   product(where: {id: $id}) {
-    ...ProductListItemFragment
+    ...ProductListItem
   }
 }
-    fragment ProductListItemFragment on Product {
+    fragment ProductListItem on Product {
   id
   name
   price
@@ -10856,10 +10856,10 @@ export const ProductsGetSingleItemByIdDocument = new TypedDocumentString(`
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList {
   products(first: 10) {
-    ...ProductListItemFragment
+    ...ProductListItem
   }
 }
-    fragment ProductListItemFragment on Product {
+    fragment ProductListItem on Product {
   id
   name
   price
