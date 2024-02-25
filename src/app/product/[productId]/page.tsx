@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getProductItemById, getProductResponseItemTypeById } from "@/api/product";
+import { getProductItemById } from "@/api/product";
 import { ProductCoverImage } from "@/ui/atoms/ProductCoverImg";
 import { SuggestedProducts } from "@/ui/organisms/SuggestedProducts";
 import { ProductDescription } from "@/ui/atoms/ProductDescription";
