@@ -13,13 +13,13 @@ export default async function Products({ params }: { params: { pageNumber: strin
 		redirect("/products/1");
 	}
 
-	// const offset = (pageNumber - 1) * PRODUCTS_PER_PAGE;
-	const products = await getProductLists();
+	const offset = (pageNumber - 1) * PRODUCTS_PER_PAGE;
+	const products = await getProductLists(PRODUCTS_PER_PAGE, offset);
 
 	return (
 		<>
 			<ProductList products={products} />
-			<Pagination totalPages={totalPages} />
+			{totalPages > 1 && <Pagination totalPages={totalPages} path="products" />}
 		</>
 	);
 }
