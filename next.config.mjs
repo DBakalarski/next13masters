@@ -24,9 +24,18 @@ const nextConfig = {
 				destination: "/products",
 				permanent: true,
 			},
+			{
+				source: "/category/:slug",
+				destination: "/category/:slug/1",
+				permanent: true,
+			},
+			{
+				source: "/collection",
+				destination: "/",
+				permanent: true,
+			},
 		];
 	},
-	// Optionally, add any other Next.js config below
 };
 
 const withMDX = createMDX({

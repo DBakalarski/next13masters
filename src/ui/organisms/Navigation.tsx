@@ -20,7 +20,7 @@ export const Navigation = async () => {
 							</li>
 							{categories.map((category) => (
 								<li key={category.id} className="mx-2">
-									<ActiveLink href={`/category/${category.slug}/1`}>{category.name}</ActiveLink>
+									<ActiveLink href={`/category/${category.slug}`}>{category.name}</ActiveLink>
 								</li>
 							))}
 						</ul>

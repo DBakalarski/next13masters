@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getProductsLengthByCategory, getProductsListByCategory } from "@/api/product";
 import { Pagination } from "@/ui/atoms/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList";
@@ -21,12 +21,14 @@ export default async function Products({
 		isNaN(pageNumber) ||
 		!categorySlug
 	) {
-		redirect("/products/1");
+		redirect("/category/1");
 	}
 
 	const offset = (pageNumber - 1) * PRODUCTS_PER_PAGE;
 	const allProducts = await getProductsListByCategory(categorySlug);
 	const products = allProducts.slice(offset, offset + PRODUCTS_PER_PAGE);
+
+	if (!products || !products.length) return notFound();
 
 	return (
 		<>

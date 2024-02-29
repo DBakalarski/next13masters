@@ -16,6 +16,7 @@ import * as types from './graphql';
 const documents = {
     "query ProductGetCategories {\n  categories(take: 3) {\n    data {\n      name\n      slug\n      id\n    }\n  }\n}": types.ProductGetCategoriesDocument,
     "query ProductGetListByCategory($slug: String!) {\n  category(slug: $slug) {\n    products {\n      ...ProductListItem\n    }\n  }\n}": types.ProductGetListByCategoryDocument,
+    "query ProductGetListByCollection($slug: String!) {\n  collection(slug: $slug) {\n    products {\n      ...ProductListItem\n    }\n  }\n}": types.ProductGetListByCollectionDocument,
     "query ProductsGetSingleItemById($id: ID!) {\n  product(id: $id) {\n    ...ProductListItem\n  }\n}": types.ProductsGetSingleItemByIdDocument,
     "fragment ProductListItem on Product {\n  id\n  name\n  price\n  description\n  images {\n    url\n  }\n  categories {\n    id\n    name\n  }\n}": types.ProductListItemFragmentDoc,
     "query ProductsGetList($productsNumber: Int, $productsSkip: Int) {\n  products(take: $productsNumber, skip: $productsSkip) {\n    data {\n      ...ProductListItem\n    }\n  }\n}": types.ProductsGetListDocument,
@@ -29,6 +30,10 @@ export function graphql(source: "query ProductGetCategories {\n  categories(take
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query ProductGetListByCategory($slug: String!) {\n  category(slug: $slug) {\n    products {\n      ...ProductListItem\n    }\n  }\n}"): typeof import('./graphql').ProductGetListByCategoryDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query ProductGetListByCollection($slug: String!) {\n  collection(slug: $slug) {\n    products {\n      ...ProductListItem\n    }\n  }\n}"): typeof import('./graphql').ProductGetListByCollectionDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
