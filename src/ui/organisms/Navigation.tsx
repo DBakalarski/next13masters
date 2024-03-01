@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SearchInput } from "../atoms/SearchInput";
 import { CartCounter } from "@/ui/atoms/CartCounter";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 import { getProductsCategoryList } from "@/api/product";
@@ -7,10 +8,10 @@ export const Navigation = async () => {
 	const categories = await getProductsCategoryList();
 
 	return (
-		<nav className="fixed left-0 right-0 top-0 z-10 bg-gray-600 p-4 text-white">
+		<nav className="fixed left-0 right-0 top-0 z-10 bg-gray-600 p-2 text-white">
 			<div className="container mx-auto flex justify-between">
 				<ul className="flex justify-between">
-					<li>
+					<li className="flex items-center">
 						<ul className="flex">
 							<li className="mx-2">
 								<ActiveLink href="/">Home</ActiveLink>
@@ -26,7 +27,8 @@ export const Navigation = async () => {
 						</ul>
 					</li>
 				</ul>
-				<Link href="/cart">
+				<SearchInput />
+				<Link className="flex items-center" href="/cart">
 					<CartCounter />
 				</Link>
 			</div>

@@ -291,6 +291,13 @@ export type ProductGetListByCollectionQueryVariables = Exact<{
 
 export type ProductGetListByCollectionQuery = { collection?: { products: Array<{ id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> }> } | null };
 
+export type ProductsGetListBySearchQueryVariables = Exact<{
+  search: Scalars['String']['input'];
+}>;
+
+
+export type ProductsGetListBySearchQuery = { products: { data: Array<{ id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> }> } };
+
 export type ProductsGetSingleItemByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
@@ -390,6 +397,27 @@ export const ProductGetListByCollectionDocument = new TypedDocumentString(`
     name
   }
 }`) as unknown as TypedDocumentString<ProductGetListByCollectionQuery, ProductGetListByCollectionQueryVariables>;
+export const ProductsGetListBySearchDocument = new TypedDocumentString(`
+    query ProductsGetListBySearch($search: String!) {
+  products(search: $search) {
+    data {
+      ...ProductListItem
+    }
+  }
+}
+    fragment ProductListItem on Product {
+  id
+  name
+  price
+  description
+  images {
+    url
+  }
+  categories {
+    id
+    name
+  }
+}`) as unknown as TypedDocumentString<ProductsGetListBySearchQuery, ProductsGetListBySearchQueryVariables>;
 export const ProductsGetSingleItemByIdDocument = new TypedDocumentString(`
     query ProductsGetSingleItemById($id: ID!) {
   product(id: $id) {

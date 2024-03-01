@@ -17,12 +17,14 @@
 		"@tailwindcss/typography": "^0.5.10",
 		"@types/mdx": "^2.0.11",
 		"clsx": "^2.1.0",
+		"flowbite": "^2.3.0",
 		"graphql": "^16.8.1",
 		"lucide-react": "^0.338.0",
 		"next": "14.1.0",
 		"react": "^18",
 		"react-dom": "^18",
-		"remark-gfm": "^4.0.0"
+		"remark-gfm": "^4.0.0",
+		"use-debounce": "^10.0.0"
 	},
 	"devDependencies": {
 		"@graphql-codegen/cli": "5.0.2",
@@ -35,6 +37,7 @@
 		"@typescript-eslint/eslint-plugin": "^6.21.0",
 		"@typescript-eslint/parser": "^6.21.0",
 		"autoprefixer": "^10.0.1",
+		"daisyui": "^4.7.2",
 		"eslint": "^8",
 		"eslint-config-next": "14.1.0",
 		"eslint-config-prettier": "^9.1.0",

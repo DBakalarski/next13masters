@@ -5,8 +5,6 @@ import { ProductList } from "@/ui/organisms/ProductList";
 export default async function Collection({ params }: { params: { collectionSlug: string } }) {
 	const collectionSlug = params.collectionSlug;
 
-	console.log("collectionSlug", collectionSlug);
-
 	if (!collectionSlug) {
 		redirect("/");
 	}
