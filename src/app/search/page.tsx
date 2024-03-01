@@ -1,11 +1,11 @@
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 import { getProductsListBySearch } from "@/api/product";
 import { ProductList } from "@/ui/organisms/ProductList";
 
-export default async function Search({ searchParams }: { searchParams: { query: string } }) {
-	if (!searchParams.query) {
-		redirect("/");
-	}
+export default async function SearchPge({ searchParams }: { searchParams: { query: string } }) {
+	// if (!searchParams.query) {
+	// 	redirect("/");
+	// }
 
 	const products = await getProductsListBySearch(searchParams.query);
 

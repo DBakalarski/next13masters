@@ -27,7 +27,7 @@ export const SearchInput = () => {
 		} else {
 			params.delete("query");
 		}
-		router.replace(`/search/?${params.toString()}`);
+		router.replace(`/search/?${params.toString().replaceAll("+", "%20")}`);
 	}, 500);
 
 	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

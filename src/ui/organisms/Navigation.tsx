@@ -1,6 +1,7 @@
-import Link from "next/link";
+// import Link from "next/link";
+import { Suspense } from "react";
 import { SearchInput } from "../atoms/SearchInput";
-import { CartCounter } from "@/ui/atoms/CartCounter";
+// import { CartCounter } from "@/ui/atoms/CartCounter";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 import { getProductsCategoryList } from "@/api/product";
 
@@ -19,18 +20,20 @@ export const Navigation = async () => {
 							<li className="mx-2">
 								<ActiveLink href="/products">All</ActiveLink>
 							</li>
-							{categories.map((category) => (
+							{categories.reverse().map((category) => (
 								<li key={category.id} className="mx-2">
-									<ActiveLink href={`/category/${category.slug}`}>{category.name}</ActiveLink>
+									<ActiveLink href={`/categories/${category.slug}`}>{category.name}</ActiveLink>
 								</li>
 							))}
 						</ul>
 					</li>
 				</ul>
-				<SearchInput />
-				<Link className="flex items-center" href="/cart">
+				<Suspense fallback="Loading...">
+					<SearchInput />
+				</Suspense>
+				{/* <Link className="flex items-center" href="/cart">
 					<CartCounter />
-				</Link>
+				</Link> */}
 			</div>
 		</nav>
 	);
