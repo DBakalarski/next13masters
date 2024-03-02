@@ -9,6 +9,9 @@ const nextConfig = {
 	experimental: {
 		mdxRs: true,
 	},
+	images: {
+		domains: ["media.graphassets.com", "static-ourstore.hyperfunctor.com"],
+	},
 	async redirects() {
 		return [
 			{
@@ -21,9 +24,18 @@ const nextConfig = {
 				destination: "/products",
 				permanent: true,
 			},
+			{
+				source: "/categories/:slug",
+				destination: "/categories/:slug/1",
+				permanent: true,
+			},
+			{
+				source: "/collection",
+				destination: "/",
+				permanent: true,
+			},
 		];
 	},
-	// Optionally, add any other Next.js config below
 };
 
 const withMDX = createMDX({

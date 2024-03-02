@@ -1,0 +1,9 @@
+query ProductGetCategories {
+	categories(take: 3) {
+		data {
+			name
+			slug
+			id
+		}
+	}
+}

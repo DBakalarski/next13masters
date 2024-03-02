@@ -1,0 +1,7 @@
+query ProductsGetList($productsNumber: Int, $productsSkip: Int) {
+	products(take: $productsNumber, skip: $productsSkip) {
+		data {
+			...ProductListItem
+		}
+	}
+}

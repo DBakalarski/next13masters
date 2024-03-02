@@ -1,0 +1,5 @@
+query ProductsGetSingleItemById($id: ID!) {
+	product(id: $id) {
+		...ProductListItem
+	}
+}

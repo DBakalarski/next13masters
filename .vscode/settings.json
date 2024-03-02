@@ -6,12 +6,12 @@
 		"source.fixAll": "always"
 	},
 	"graphql-config.dotEnvPath": "./.env",
-	"graphql-config.load.configName": "graphql",
 	"editor.quickSuggestions": {
 		"strings": true
 	},
 	"files.associations": {
 		"*.css": "tailwindcss"
 	},
-	"editor.tabSize": 2
+	"editor.tabSize": 2,
+	"workbench.editor.wrapTabs": true
 }

@@ -1,8 +1,13 @@
-export default function Home() {
+import { getProductLists } from "@/api/product";
+import { CollectionsList } from "@/ui/molecules/CollectionsList";
+import { ProductList } from "@/ui/organisms/ProductList";
+
+export default async function Home() {
+	const products = await getProductLists(4, 0);
 	return (
 		<>
-			<h1 className="text-4xl font-bold">Home</h1>
-			<p className="text-xl">Welcome to the Next.js app</p>
+			<CollectionsList />
+			<ProductList products={products} />
 		</>
 	);
 }
