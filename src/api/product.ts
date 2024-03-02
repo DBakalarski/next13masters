@@ -1,6 +1,7 @@
 import { executeGraphql } from "./apiGraphql";
 import {
 	ProductGetCategoriesDocument,
+	ProductGetCollectionsDocument,
 	ProductGetListByCategoryDocument,
 	ProductGetListByCollectionDocument,
 	ProductsGetListBySearchDocument,
@@ -69,4 +70,11 @@ export const getProductItemById = async (id: string) => {
 	if (!grapqlResponse.product) return null;
 
 	return grapqlResponse.product;
+};
+
+export const getCollectionsData = async () => {
+	const grapqlResponse = await executeGraphql(ProductGetCollectionsDocument, {});
+	if (!grapqlResponse.collections?.data) return [];
+
+	return grapqlResponse.collections.data;
 };

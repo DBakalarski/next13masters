@@ -1,10 +1,13 @@
-import { SuggestedProducts } from "@/ui/organisms/SuggestedProducts";
+import { getProductLists } from "@/api/product";
+import { CollectionsList } from "@/ui/molecules/CollectionsList";
+import { ProductList } from "@/ui/organisms/ProductList";
 
-export default function Home() {
+export default async function Home() {
+	const products = await getProductLists(4, 0);
 	return (
 		<>
-			<h1 className="text-4xl font-bold">Home</h1>
-			<SuggestedProducts />
+			<CollectionsList />
+			<ProductList products={products} />
 		</>
 	);
 }

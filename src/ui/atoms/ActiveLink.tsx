@@ -25,7 +25,10 @@ export function ActiveLink<T extends string>({
 
 	return (
 		<Link
-			className={clsx(`pb-1 hover:border-b-2`, isActive && `border-b-2`)}
+			className={clsx(
+				`border-blue-400 pb-1 hover:border-b-2`,
+				isActive && `border-b-2 border-blue-600`,
+			)}
 			href={href}
 			{...(isActive ? { "aria-current": "page" } : {})}
 		>
