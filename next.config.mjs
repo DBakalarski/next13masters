@@ -8,7 +8,9 @@ const nextConfig = {
 	typedRoutes: true,
 	experimental: {
 		mdxRs: true,
+		serverActions: true,
 	},
+
 	images: {
 		domains: ["media.graphassets.com", "static-ourstore.hyperfunctor.com"],
 	},

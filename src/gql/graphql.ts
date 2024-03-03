@@ -179,7 +179,8 @@ export type ProductList = {
 export type ProductSortBy =
   | 'DEFAULT'
   | 'NAME'
-  | 'PRICE';
+  | 'PRICE'
+  | 'RATING';
 
 export type Query = {
   cart?: Maybe<Cart>;
@@ -272,6 +273,33 @@ export type SortDirection =
   | 'ASC'
   | 'DESC';
 
+export type CartAddItemMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+  input: MutationCartAddItemInput;
+}>;
+
+
+export type CartAddItemMutation = { cartAddItem: { id: string, items: Array<{ quantity: number, product: { id: string, name: string, price: number, images: Array<{ url: string }> } }> } };
+
+export type CartFindOrCreateMutationVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']['input']>;
+  input: MutationCartFindOrCreateInput;
+}>;
+
+
+export type CartFindOrCreateMutation = { cartFindOrCreate: { id: string } };
+
+export type CartGetByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type CartGetByIdQuery = { cart?: { id: string, items: Array<{ quantity: number, product: { id: string, name: string, price: number, images: Array<{ url: string }> } }> } | null };
+
+export type CartItemFragment = { id: string, items: Array<{ quantity: number, product: { id: string, name: string, price: number, images: Array<{ url: string }> } }> };
+
+export type CartItemProductFragment = { quantity: number, product: { id: string, name: string, price: number, images: Array<{ url: string }> } };
+
 export type ProductCollectionFragment = { id: string, name: string, slug: string };
 
 export type ProductGetCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
@@ -336,6 +364,37 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const CartItemProductFragmentDoc = new TypedDocumentString(`
+    fragment CartItemProduct on CartItem {
+  quantity
+  product {
+    id
+    name
+    price
+    images {
+      url
+    }
+  }
+}
+    `, {"fragmentName":"CartItemProduct"}) as unknown as TypedDocumentString<CartItemProductFragment, unknown>;
+export const CartItemFragmentDoc = new TypedDocumentString(`
+    fragment CartItem on Cart {
+  id
+  items {
+    ...CartItemProduct
+  }
+}
+    fragment CartItemProduct on CartItem {
+  quantity
+  product {
+    id
+    name
+    price
+    images {
+      url
+    }
+  }
+}`, {"fragmentName":"CartItem"}) as unknown as TypedDocumentString<CartItemFragment, unknown>;
 export const ProductCollectionFragmentDoc = new TypedDocumentString(`
     fragment ProductCollection on Collection {
   id
@@ -358,6 +417,59 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
+export const CartAddItemDocument = new TypedDocumentString(`
+    mutation CartAddItem($id: ID!, $input: MutationCartAddItemInput!) {
+  cartAddItem(id: $id, input: $input) {
+    ...CartItem
+  }
+}
+    fragment CartItem on Cart {
+  id
+  items {
+    ...CartItemProduct
+  }
+}
+fragment CartItemProduct on CartItem {
+  quantity
+  product {
+    id
+    name
+    price
+    images {
+      url
+    }
+  }
+}`) as unknown as TypedDocumentString<CartAddItemMutation, CartAddItemMutationVariables>;
+export const CartFindOrCreateDocument = new TypedDocumentString(`
+    mutation CartFindOrCreate($id: ID, $input: MutationCartFindOrCreateInput!) {
+  cartFindOrCreate(id: $id, input: $input) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartFindOrCreateMutation, CartFindOrCreateMutationVariables>;
+export const CartGetByIdDocument = new TypedDocumentString(`
+    query CartGetById($id: ID!) {
+  cart(id: $id) {
+    ...CartItem
+  }
+}
+    fragment CartItem on Cart {
+  id
+  items {
+    ...CartItemProduct
+  }
+}
+fragment CartItemProduct on CartItem {
+  quantity
+  product {
+    id
+    name
+    price
+    images {
+      url
+    }
+  }
+}`) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
 export const ProductGetCategoriesDocument = new TypedDocumentString(`
     query ProductGetCategories {
   categories(take: 3) {

@@ -1,7 +1,7 @@
-// import Link from "next/link";
 import { Suspense } from "react";
+import Link from "next/link";
 import { SearchInput } from "../atoms/SearchInput";
-// import { CartCounter } from "@/ui/atoms/CartCounter";
+import { CartCounter } from "@/ui/atoms/CartCounter";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 import { getProductsCategoryList } from "@/api/product";
 
@@ -31,9 +31,9 @@ export const Navigation = async () => {
 				<Suspense fallback="Loading...">
 					<SearchInput />
 				</Suspense>
-				{/* <Link className="flex items-center" href="/cart">
+				<Link className="flex items-center" href="/cart">
 					<CartCounter />
-				</Link> */}
+				</Link>
 			</div>
 		</nav>
 	);
