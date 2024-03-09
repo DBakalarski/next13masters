@@ -29,7 +29,7 @@ export default async function og({ params }: { params: { productId: string } }) 
 				    )`,
 				}}
 			>
-				{product?.images[0] && <img tw="w-40 h-40" img src={product.images[0].url} />}
+				{product?.images[0] && <img tw="w-40 h-40" src={product.images[0].url} />}
 
 				<p tw="font-sans uppercase m-0 p-0 text-[40px] leading-4">{product?.name}</p>
 				<p tw="font-serif m-0 p-0 font-black">{product?.categories[0]?.name}</p>
