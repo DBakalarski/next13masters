@@ -10,13 +10,16 @@ import {
 } from "@/gql/graphql";
 
 export const getAllProductsLength = async () => {
-	const grapqlRespone = await executeGraphql(ProductsGetListDocument, {});
+	const grapqlRespone = await executeGraphql({ query: ProductsGetListDocument, variables: {} });
 	return grapqlRespone.products.data.length;
 };
 
 export const getProductsLengthByCategory = async (slug: string) => {
-	const grapqlResponse = await executeGraphql(ProductGetListByCategoryDocument, {
-		slug: slug,
+	const grapqlResponse = await executeGraphql({
+		query: ProductGetListByCategoryDocument,
+		variables: {
+			slug: slug,
+		},
 	});
 	if (!grapqlResponse.category?.products) return 0;
 
@@ -24,23 +27,31 @@ export const getProductsLengthByCategory = async (slug: string) => {
 };
 
 export const getProductLists = async (productsNumber: number, productsSkip: number) => {
-	const grapqlRespone = await executeGraphql(ProductsGetListDocument, {
-		productsNumber: productsNumber,
-		productsSkip: productsSkip,
+	const grapqlRespone = await executeGraphql({
+		query: ProductsGetListDocument,
+		variables: {
+			productsNumber: productsNumber,
+			productsSkip: productsSkip,
+		},
 	});
 	return grapqlRespone.products.data;
 };
 
 export const getProductsCategoryList = async () => {
-	const grapqlResponse = await executeGraphql(ProductGetCategoriesDocument, {});
+	const grapqlResponse = await executeGraphql({
+		query: ProductGetCategoriesDocument,
+	});
 	if (!grapqlResponse.categories?.data) return [];
 
 	return grapqlResponse.categories.data;
 };
 
 export const getProductsListByCategory = async (slug: string) => {
-	const grapqlResponse = await executeGraphql(ProductGetListByCategoryDocument, {
-		slug: slug,
+	const grapqlResponse = await executeGraphql({
+		query: ProductGetListByCategoryDocument,
+		variables: {
+			slug: slug,
+		},
 	});
 	if (!grapqlResponse.category?.products) return [];
 
@@ -48,8 +59,11 @@ export const getProductsListByCategory = async (slug: string) => {
 };
 
 export const getProductsListByCollections = async (slug: string) => {
-	const grapqlResponse = await executeGraphql(ProductGetListByCollectionDocument, {
-		slug: slug,
+	const grapqlResponse = await executeGraphql({
+		query: ProductGetListByCollectionDocument,
+		variables: {
+			slug: slug,
+		},
 	});
 	if (!grapqlResponse.collection?.products) return [];
 
@@ -57,8 +71,11 @@ export const getProductsListByCollections = async (slug: string) => {
 };
 
 export const getProductsListBySearch = async (search: string) => {
-	const grapqlResponse = await executeGraphql(ProductsGetListBySearchDocument, {
-		search: search,
+	const grapqlResponse = await executeGraphql({
+		query: ProductsGetListBySearchDocument,
+		variables: {
+			search: search,
+		},
 	});
 	if (!grapqlResponse.products?.data) return [];
 
@@ -66,14 +83,19 @@ export const getProductsListBySearch = async (search: string) => {
 };
 
 export const getProductItemById = async (id: string) => {
-	const grapqlResponse = await executeGraphql(ProductsGetSingleItemByIdDocument, { id });
+	const grapqlResponse = await executeGraphql({
+		query: ProductsGetSingleItemByIdDocument,
+		variables: { id },
+	});
 	if (!grapqlResponse.product) return null;
 
 	return grapqlResponse.product;
 };
 
 export const getCollectionsData = async () => {
-	const grapqlResponse = await executeGraphql(ProductGetCollectionsDocument, {});
+	const grapqlResponse = await executeGraphql({
+		query: ProductGetCollectionsDocument,
+	});
 	if (!grapqlResponse.collections?.data) return [];
 
 	return grapqlResponse.collections.data;

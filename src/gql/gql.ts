@@ -15,10 +15,12 @@ import * as types from './graphql';
  */
 const documents = {
     "mutation CartAddItem($id: ID!, $input: MutationCartAddItemInput!) {\n  cartAddItem(id: $id, input: $input) {\n    ...CartItem\n  }\n}": types.CartAddItemDocument,
+    "mutation CartChangeItemQuantity($id: ID!, $productId: ID!, $quantity: Int!) {\n  cartChangeItemQuantity(id: $id, productId: $productId, quantity: $quantity) {\n    ...CartItem\n  }\n}": types.CartChangeItemQuantityDocument,
     "mutation CartFindOrCreate($id: ID, $input: MutationCartFindOrCreateInput!) {\n  cartFindOrCreate(id: $id, input: $input) {\n    id\n  }\n}": types.CartFindOrCreateDocument,
     "query CartGetById($id: ID!) {\n  cart(id: $id) {\n    ...CartItem\n  }\n}": types.CartGetByIdDocument,
     "fragment CartItem on Cart {\n  id\n  items {\n    ...CartItemProduct\n  }\n}": types.CartItemFragmentDoc,
     "fragment CartItemProduct on CartItem {\n  quantity\n  product {\n    id\n    name\n    price\n    images {\n      url\n    }\n  }\n}": types.CartItemProductFragmentDoc,
+    "mutation cartRemoveItem($id: ID!, $productId: ID!) {\n  cartRemoveItem(id: $id, productId: $productId) {\n    ...CartItem\n  }\n}": types.CartRemoveItemDocument,
     "fragment ProductCollection on Collection {\n  id\n  name\n  slug\n}": types.ProductCollectionFragmentDoc,
     "query ProductGetCategories {\n  categories(take: 3) {\n    data {\n      name\n      slug\n      id\n    }\n  }\n}": types.ProductGetCategoriesDocument,
     "query ProductGetCollections {\n  collections {\n    data {\n      ...ProductCollection\n    }\n  }\n}": types.ProductGetCollectionsDocument,
@@ -37,6 +39,10 @@ export function graphql(source: "mutation CartAddItem($id: ID!, $input: Mutation
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "mutation CartChangeItemQuantity($id: ID!, $productId: ID!, $quantity: Int!) {\n  cartChangeItemQuantity(id: $id, productId: $productId, quantity: $quantity) {\n    ...CartItem\n  }\n}"): typeof import('./graphql').CartChangeItemQuantityDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "mutation CartFindOrCreate($id: ID, $input: MutationCartFindOrCreateInput!) {\n  cartFindOrCreate(id: $id, input: $input) {\n    id\n  }\n}"): typeof import('./graphql').CartFindOrCreateDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -50,6 +56,10 @@ export function graphql(source: "fragment CartItem on Cart {\n  id\n  items {\n 
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "fragment CartItemProduct on CartItem {\n  quantity\n  product {\n    id\n    name\n    price\n    images {\n      url\n    }\n  }\n}"): typeof import('./graphql').CartItemProductFragmentDoc;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation cartRemoveItem($id: ID!, $productId: ID!) {\n  cartRemoveItem(id: $id, productId: $productId) {\n    ...CartItem\n  }\n}"): typeof import('./graphql').CartRemoveItemDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
