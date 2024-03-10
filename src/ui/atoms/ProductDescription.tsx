@@ -1,14 +1,26 @@
+import { cookies } from "next/headers";
 import { AddToCartButton } from "./AddToCartButton";
 import { type ProductListItemFragment } from "@/gql/graphql";
 import { formatMoney } from "@/utils";
-import { addProductToCart, getOrCreateCart } from "@/api/cart";
+import { addProductToCart, getCartById, getOrCreateCart } from "@/api/cart";
+import { changeItemQuantity } from "@/app/cart/action";
 
 export const ProductDescription = ({ product }: { product: ProductListItemFragment }) => {
 	async function addProductToCartAction() {
 		"use server";
+		const cartId = cookies().get("cartId")?.value;
+		if (!cartId) {
+			await getOrCreateCart(product.id);
+		} else {
+			const cart = await getCartById(cartId);
+			const isItemInCart = cart.cart?.items.find((item) => item.product.id === product.id);
+			if (isItemInCart) {
+				await changeItemQuantity(product.id, isItemInCart.quantity + 1, cartId);
+				return;
+			}
 
-		const cart = await getOrCreateCart(product.id);
-		await addProductToCart(cart.cartFindOrCreate.id, product.id);
+			await addProductToCart(cartId, product.id);
+		}
 	}
 	return (
 		<div className="ml-4 max-w-md">
