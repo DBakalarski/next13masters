@@ -4,6 +4,7 @@ import {
 	ProductGetCollectionsDocument,
 	ProductGetListByCategoryDocument,
 	ProductGetListByCollectionDocument,
+	ProductGetReviewsDocument,
 	ProductsGetListBySearchDocument,
 	ProductsGetListDocument,
 	ProductsGetSingleItemByIdDocument,
@@ -99,4 +100,14 @@ export const getCollectionsData = async () => {
 	if (!grapqlResponse.collections?.data) return [];
 
 	return grapqlResponse.collections.data;
+};
+
+export const getReviewsByProductId = async (productId: string) => {
+	const grapqlResponse = await executeGraphql({
+		query: ProductGetReviewsDocument,
+		variables: { id: productId },
+	});
+	if (!grapqlResponse.product) return null;
+
+	return grapqlResponse.product;
 };

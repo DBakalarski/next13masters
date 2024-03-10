@@ -1,0 +1,8 @@
+fragment ProductReview on Review {
+	author
+	email
+	description
+	title
+	id
+	rating
+}

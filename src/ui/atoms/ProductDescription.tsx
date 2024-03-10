@@ -18,7 +18,7 @@ export const ProductDescription = ({ product }: { product: ProductListItemFragme
 			</p>
 			<p>{product.description}</p>
 			<form action={addProductToCartAction}>
-				<input type="text" name="productId" value={product.id} hidden />
+				<input type="text" name="productId" hidden defaultValue={product.id} />
 				<AddToCartButton />
 			</form>
 		</div>
