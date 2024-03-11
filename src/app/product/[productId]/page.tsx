@@ -43,7 +43,7 @@ export default async function SingleProduct({ params }: { params: { productId: s
 			</article>
 			<ReviewsContainer productId={product.id} />
 			<ReviewForm productId={product.id} />
-			<Suspense fallback={<div>Loading...</div>}>
+			<Suspense fallback={<div aria-busy="true">Loading...</div>}>
 				<SuggestedProducts />
 			</Suspense>
 		</>

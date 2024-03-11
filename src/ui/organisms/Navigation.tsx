@@ -28,7 +28,7 @@ export const Navigation = async () => {
 						</ul>
 					</li>
 				</ul>
-				<Suspense fallback="Loading...">
+				<Suspense fallback={<div aria-busy="true">Loading...</div>}>
 					<SearchInput />
 				</Suspense>
 			</nav>
