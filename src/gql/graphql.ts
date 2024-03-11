@@ -347,21 +347,21 @@ export type ProductGetListByCategoryQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetListByCategoryQuery = { category?: { products: Array<{ id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> }> } | null };
+export type ProductGetListByCategoryQuery = { category?: { products: Array<{ id: string, name: string, price: number, description: string, rating?: number | null, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> }> } | null };
 
 export type ProductGetListByCollectionQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type ProductGetListByCollectionQuery = { collection?: { products: Array<{ id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> }> } | null };
+export type ProductGetListByCollectionQuery = { collection?: { products: Array<{ id: string, name: string, price: number, description: string, rating?: number | null, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> }> } | null };
 
 export type ProductsGetListBySearchQueryVariables = Exact<{
   search: Scalars['String']['input'];
 }>;
 
 
-export type ProductsGetListBySearchQuery = { products: { data: Array<{ id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> }> } };
+export type ProductsGetListBySearchQuery = { products: { data: Array<{ id: string, name: string, price: number, description: string, rating?: number | null, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> }> } };
 
 export type ProductGetReviewsQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -375,9 +375,9 @@ export type ProductsGetSingleItemByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetSingleItemByIdQuery = { product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> } | null };
+export type ProductsGetSingleItemByIdQuery = { product?: { id: string, name: string, price: number, description: string, rating?: number | null, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> } | null };
 
-export type ProductListItemFragment = { id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> };
+export type ProductListItemFragment = { id: string, name: string, price: number, description: string, rating?: number | null, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> };
 
 export type ProductReviewFragment = { author: string, email: string, description: string, title: string, id: string, rating: number };
 
@@ -388,7 +388,7 @@ export type ProductsGetListQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetListQuery = { products: { data: Array<{ id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> }> } };
+export type ProductsGetListQuery = { products: { data: Array<{ id: string, name: string, price: number, description: string, rating?: number | null, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> }> } };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -448,6 +448,7 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   name
   price
   description
+  rating
   images {
     url
   }
@@ -633,6 +634,7 @@ export const ProductGetListByCategoryDocument = new TypedDocumentString(`
   name
   price
   description
+  rating
   images {
     url
   }
@@ -654,6 +656,7 @@ export const ProductGetListByCollectionDocument = new TypedDocumentString(`
   name
   price
   description
+  rating
   images {
     url
   }
@@ -675,6 +678,7 @@ export const ProductsGetListBySearchDocument = new TypedDocumentString(`
   name
   price
   description
+  rating
   images {
     url
   }
@@ -711,6 +715,7 @@ export const ProductsGetSingleItemByIdDocument = new TypedDocumentString(`
   name
   price
   description
+  rating
   images {
     url
   }
@@ -732,6 +737,7 @@ export const ProductsGetListDocument = new TypedDocumentString(`
   name
   price
   description
+  rating
   images {
     url
   }

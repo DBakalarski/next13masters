@@ -3,6 +3,7 @@ fragment ProductListItem on Product {
 	name
 	price
 	description
+	rating
 	images {
 		url
 	}
