@@ -5,6 +5,7 @@ import {
 	ProductGetListByCategoryDocument,
 	ProductGetListByCollectionDocument,
 	ProductGetReviewsDocument,
+	type ProductSortBy,
 	ProductsGetListBySearchDocument,
 	ProductsGetListDocument,
 	ProductsGetSingleItemByIdDocument,
@@ -27,12 +28,17 @@ export const getProductsLengthByCategory = async (slug: string) => {
 	return grapqlResponse.category.products.length;
 };
 
-export const getProductLists = async (productsNumber: number, productsSkip: number) => {
+export const getProductLists = async (
+	productsNumber: number,
+	productsSkip: number,
+	orderBy: ProductSortBy = "PRICE",
+) => {
 	const grapqlRespone = await executeGraphql({
 		query: ProductsGetListDocument,
 		variables: {
 			productsNumber: productsNumber,
 			productsSkip: productsSkip,
+			orderBy: orderBy,
 		},
 	});
 	return grapqlRespone.products.data;

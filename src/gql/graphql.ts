@@ -384,6 +384,7 @@ export type ProductReviewFragment = { author: string, email: string, description
 export type ProductsGetListQueryVariables = Exact<{
   productsNumber?: InputMaybe<Scalars['Int']['input']>;
   productsSkip?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ProductSortBy>;
 }>;
 
 
@@ -719,8 +720,8 @@ export const ProductsGetSingleItemByIdDocument = new TypedDocumentString(`
   }
 }`) as unknown as TypedDocumentString<ProductsGetSingleItemByIdQuery, ProductsGetSingleItemByIdQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList($productsNumber: Int, $productsSkip: Int) {
-  products(take: $productsNumber, skip: $productsSkip) {
+    query ProductsGetList($productsNumber: Int, $productsSkip: Int, $orderBy: ProductSortBy) {
+  products(take: $productsNumber, skip: $productsSkip, orderBy: $orderBy) {
     data {
       ...ProductListItem
     }
