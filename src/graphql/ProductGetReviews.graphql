@@ -1,0 +1,8 @@
+query ProductGetReviews($id: ID!) {
+	product(id: $id) {
+		rating
+		reviews {
+			...ProductReview
+		}
+	}
+}
